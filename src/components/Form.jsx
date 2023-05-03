@@ -22,18 +22,41 @@ const InputSubmit = styled.input`
 `;
 
 const Form = () => {
+  const [cryptos, setCryptos] = useState([]);
 
-  const [currencies, SelectCurrencies] = useSelectCurrencies(
+  const [currency, SelectCurrencies] = useSelectCurrencies(
     "Choose your Currency",
     currencies
   );
+  const [cryptoCurrency, SelectCryptoCurrency] = useSelectCurrencies(
+    "Choose your Cryptocurrency",
+    cryptos
+  );
+  useEffect(() => {
+    const consultAPI = async () => {
+      const url =
+        "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD";
+      const response = await fetch(url);
+      const result = await response.json();
 
+      const cryptoArray = result.Data.map((crypto) => {
+        const object = {
+          id: crypto.CoinInfo.Name,
+          name: crypto.CoinInfo.FullName,
+        };
+        return object;
+      });
+
+      setCryptos(cryptoArray);
+    };
+    consultAPI();
+  }, []);
 
   return (
     <>
       <form>
         <SelectCurrencies />
-      
+        <SelectCryptoCurrency />
         <InputSubmit type="submit" value="Quote" />
       </form>
     </>
