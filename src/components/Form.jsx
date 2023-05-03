@@ -23,7 +23,7 @@ const InputSubmit = styled.input`
 
 const Form = () => {
   const [cryptos, setCryptos] = useState([]);
-
+  const [error, setError] = useState(false);
   const [currency, SelectCurrencies] = useSelectCurrencies(
     "Choose your Currency",
     currencies
@@ -32,6 +32,7 @@ const Form = () => {
     "Choose your Cryptocurrency",
     cryptos
   );
+
   useEffect(() => {
     const consultAPI = async () => {
       const url =
@@ -52,9 +53,21 @@ const Form = () => {
     consultAPI();
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if ([currency, cryptoCurrency].includes("")) {
+      setError(true);
+      return;
+    }
+
+    setError(false);
+  };
+
   return (
     <>
-      <form>
+      {error && <Error>All fields are required</Error>}
+      <form onSubmit={handleSubmit}>
         <SelectCurrencies />
         <SelectCryptoCurrency />
         <InputSubmit type="submit" value="Quote" />
