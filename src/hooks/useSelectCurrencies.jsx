@@ -5,14 +5,14 @@ const Label = styled.label`
   color: #fff;
   display: block;
   font-family: "Lato", sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
-  margin: 15px 0;
+  margin: 5px 0;
 `;
 const Select = styled.select`
   width: 100%;
   font-size: 18px;
-  padding: 14px;
+  padding: 8px;
   border-radius: 10px;
 `;
 

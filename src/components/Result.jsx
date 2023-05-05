@@ -1,32 +1,29 @@
-
-
 import styled from "@emotion/styled";
 
 const Container = styled.div`
   color: #fff;
   font-family: "Lato", sans-serif;
-
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 30px;
+  gap: 0.5rem;
+  margin-top: 10px;
 `;
 const Image = styled.img`
   display: block;
-  width: 120px;
+  width: 90px;
 `;
 
 const Text = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   span {
     font-weight: 700;
   }
 `;
 
 const Price = styled.p`
-  font-size: 24px;
+  font-size: 21px;
   span {
-    font-weight: 700;
+    font-weight: 600;
   }
 `;
 
@@ -34,7 +31,7 @@ const Result = ({ result }) => {
   const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE } =
     result;
   return (
-    <Container>
+    <Container style={{ scrollMarginTop: "20rem" }}>
       <Image src={`https://cryptocompare.com/${IMAGEURL}`} alt="crypto image" />
       <div>
         <Price>
